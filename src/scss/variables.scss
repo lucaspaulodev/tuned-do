@@ -1,0 +1,7 @@
+// Values used by the sv() function.
+$defaultScalingValue: .7;
+$defaultMaxScreen: 1680;
+$defaultMobileMax: 768;
+
+// Values used by breakpoint media-query mixins.
+$breakpointUpperLimit: (mobile: 768, desktop: 1680, large: 1920);
