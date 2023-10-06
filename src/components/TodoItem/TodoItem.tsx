@@ -51,18 +51,6 @@ export const TodoItem = ({todo, index}: TodoItemDTO) => {
               detail: data.detail
           }
         },
-        update: (cache) => {
-          const { todos } = client.readQuery({query: GET_TODOS})
-  
-          cache.writeQuery({
-            query: GET_TODOS,
-            data: {
-              todos: {
-                ...todos
-              }
-            }
-          })
-        }
       })
   }
   
@@ -102,7 +90,7 @@ export const TodoItem = ({todo, index}: TodoItemDTO) => {
                     title={'Update Todo'}
                     description={'Fill the fields to update your Todo'}
                 >
-                    <Form type='update' onSubmit={handleUpdateTodo}/>
+                    <Form type='update' onSubmit={handleUpdateTodo} todo={todo}/>
                 </Modal>
                 
                 <button type="button" data-testid="remove-todo-button" onClick={() => handleRemoveTodo(todo.id)}>
