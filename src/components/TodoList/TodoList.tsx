@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GET_TODOS } from 'src/lib/queries/queries';
-import { TodoItem } from '../Todo/Todo';
+import { TodoItem } from '../TodoItem/TodoItem';
 import { motion } from 'framer-motion';
 import { Header } from '../Header/Header';
 
