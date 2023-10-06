@@ -11,9 +11,14 @@ interface FormInputsDTO {
 interface FormDTO {
     type: 'create' | 'update',
     onSubmit: (data: any) => void;
+    todo?: {
+        id: number;
+        title: string;
+        detail?: string;
+    }
 }
 
-export const Form = ({type, onSubmit}: FormDTO) => {
+export const Form = ({type, onSubmit, todo}: FormDTO) => {
     const {
         register,
         handleSubmit,
@@ -26,18 +31,27 @@ export const Form = ({type, onSubmit}: FormDTO) => {
             <label htmlFor="title">
                 Title
             </label>
-            <input id="title" placeholder={errors.title ? 'This field is required' : 'Type a title to your Todo'} {...register("title", { required: true })}/>
+            <input 
+                id="title"
+                placeholder={errors.title ? 'This field is required' : 'Type a title to your Todo'} 
+                {...register("title", { required: true, minLength: 3})}
+                defaultValue={todo?.title ? todo.title : ''}
+                className={`${errors.title ? 'error' : ''}`}
+            />
             </fieldset>
             <fieldset className="Fieldset">
             <label htmlFor="detail">
                 Details
             </label>
-            <input id="detail" placeholder='Type details about your new Todo' {...register("detail")}/>
+            <input
+                id="detail" 
+                placeholder='Type details about your new Todo'
+                defaultValue={todo?.detail ? todo.detail : ''}
+                {...register("detail")}
+            />
             </fieldset>
             <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
-                <Dialog.Close asChild>
-                    <button type='submit' className={`${type}`}>{`${type.toUpperCase()} TODO`}</button>
-                </Dialog.Close>
+                <button type='submit' className={`${type}`}>{`${type.toUpperCase()} TODO`}</button>
             </div>
         </form>
     )
