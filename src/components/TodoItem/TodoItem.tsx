@@ -75,9 +75,9 @@ export const TodoItem = ({todo, index}: TodoItemDTO) => {
   }
 
   return (
-      <motion.li variants={itemVariants} initial={'hidden'} animate={'visible'} className={`todo ${hasDetail ? 'has-detail' : ''}`} key={todo.id} onClick={() => setIsExpanded(!expanded)}>
+      <motion.li variants={itemVariants} initial={'hidden'} animate={'visible'} className={`todo ${hasDetail ? 'has-detail' : ''}`} key={todo.id}>
           <section className={'todo-item-header'}>
-            <div className={false ? 'completed' : ''} data-testid="todo" >
+            <div tabIndex={0} className={false ? 'completed' : ''} data-testid="todo" onClick={() => setIsExpanded(!expanded)}>
                 {todo.title}
             </div>
             <section className={'todo-actions'}>
