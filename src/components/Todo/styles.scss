@@ -1,21 +1,38 @@
 li.todo {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #A09CB1;
+  padding: 1rem 0;
+
+  &.has-detail {
+    cursor: pointer;
+  }
+
+  section.todo-item-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #A09CB1;
-    padding: 1rem 0;
+    
+    padding: 0rem 0;
+
+
 
     div {
-      display: flex;
+      display: block;
       align-items: center;
       gap: 14px;
       outline: 0;
+      font-size: 1rem;
+      color: var(--text-title);
+      max-width: 75%;
 
-      p {
-        font-size: 1rem;
-        color: var(--text-title);
-      }
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
     }
+
+
 
     button {
       background: transparent;
@@ -25,10 +42,34 @@ li.todo {
         color: var(--red);
       }
 
+      &.update-button {
+        svg {
+          color: var(--cyan);
+        }
+      }
+
       &:hover {
         svg {
           filter: brightness(0.75)
         }
       }
     }
+
+    section.todo-actions {
+      display: flex;
+      gap: 16px;
+    }
+  }
+  section.todo-item-detail {
+    display: block;
+    align-items: center;
+    outline: 0;
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 75%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+  }
 }
