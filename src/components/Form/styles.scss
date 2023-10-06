@@ -26,6 +26,10 @@ form.form {
         color: var(--violet-11);
         box-shadow: 0 0 0 1px var(--violet-7);
         height: 35px;
+
+        &.error::placeholder {
+            color: var(--red)
+        }
     }
 
     input:focus {
