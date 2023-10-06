@@ -1,13 +1,10 @@
-import { Plus, X } from 'lucide-react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_TODOS } from 'src/lib/queries/queries';
-import { REMOVE_TODO } from 'src/lib/mutations/mutations';
-import { client } from 'src/lib/apollo';
 import { TodoItem } from '../Todo/Todo';
+import { motion } from 'framer-motion';
+import { Header } from '../Header/Header';
 
 import './styles.scss'
-import { Modal } from '../Modal/Modal';
-import { Form } from '../Form/Form';
 
 interface TodoDTO {
   id: number;
@@ -15,33 +12,30 @@ interface TodoDTO {
   detail?: string;
 }
 
-export function TodoList() {
-  const {data, loading} = useQuery(GET_TODOS)
+export const TodoList = () => {
 
-  const [removeTodo, {data: dataRemoved}] = useMutation(REMOVE_TODO) 
-
-  function handleToggleTodoCompletion(id: number) {
-  }
-
-  async function handleRemoveTodo(id: number) {
-    await removeTodo({
-      variables: {
-        removeTodoId: id
-      },
-      update: (cache) => {
-        const { todos } = client.readQuery({query: GET_TODOS})
-
-        cache.writeQuery({
-          query: GET_TODOS,
-          data: {
-            todos: {
-              ...todos
-            }
-          }
-        })
+  const todoListVariants = {
+    visible: {
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 1,
       }
-    })
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 0.3
+      }
+    },
   }
+
+  const {data: todosData, loading} = useQuery(GET_TODOS)
+
+  const hasTodos = todosData?.todos.length > 0
 
   if(loading) {
     return <p>Loading...</p>
@@ -49,34 +43,19 @@ export function TodoList() {
 
   return (
     <section className="task-list container">
-      <header>
-        <h2>Tuned Do</h2>
-        <div className="input-group">
-          <Modal 
-            trigger={
-              <button type="submit" data-testid="add-task-button">
-                <Plus size={20}/>
-                New Todo
-              </button>
-            }
-            title={'Create New Todo'}
-            description={'Fill the fields to create your new Todo'}
-          >
-            <Form />
-          </Modal>
-          {/* <button type="submit" data-testid="add-task-button">
-            <Plus size={20}/>
-            New Todo
-          </button> */}
-        </div>
-      </header>
-
+      <Header/>
       <main>
-        <ul>
-          {data.todos.map((task: TodoDTO) => (
-            <TodoItem todo={task} handleRemoveTodo={handleRemoveTodo}/>
-          ))}
-        </ul>
+        {hasTodos ? (
+          <motion.ul variants={todoListVariants} initial={'hidden'} animate={'visible'}>
+            {todosData.todos.map((todo: TodoDTO, index: number) => (
+              <TodoItem key={todo.id} todo={todo} index={index}/>
+            ))}
+          </motion.ul>
+        ) : (
+          <h1>
+            You don't have todos registered yet
+          </h1>
+        )}
       </main>
     </section>
   )
