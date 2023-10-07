@@ -1,27 +1,39 @@
-# React + TypeScript + Vite
+# Welcome GEMINI Team to the Tuned-Do Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Tuned-Do, a project designed to help you manage tasks and stay organized. This README will guide you through the steps to set up and run the project on your local machine.
 
-Currently, two official plugins are available:
+This project provides a WEB application built with React as requested on this link: https://geminisports.notion.site/geminisports/Sr-Full-Stack-Engineer-Technical-Evaluation-811e1b6bd8ca4f5cb893bec29e4531ab.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+To run this project on your local machine, follow these steps:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### BEFORE TO START, RUN THE API:
 
-- Configure the top-level `parserOptions` property like this:
+Go to this [repository](https://github.com/lucaspaulodev/nestjs-gql), and follow the steps on its README to run the API of this WEB app.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/lucaspaulodev/tuned-do.git
+cd tuned-do
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Install Dependencies
+
+Make sure you have Node.js and npm installed on your machine. Then, run the following command to install project dependencies:
+
+```bash
+npm install
+```
+
+### 3. Run the APP
+
+Find the `.env.example` file and rename it to `.env`. Open it and assign a value to `VITE_API_PORT=` (THE SAME THAT YOU ASSIGNED ON API_PORT FROM BACKEND PROJECT). And then, run:
+
+```bash
+npm run dev
+```
+
+After running this command, you'll able to see on your terminal which port your WEB APP is running:
+<img width="776" alt="Screenshot 2023-10-06 at 22 18 36" src="https://github.com/lucaspaulodev/tuned-do/assets/61305960/73b79eb8-7c13-46ae-b9b3-fa95b3ebd880">
