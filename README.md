@@ -37,3 +37,6 @@ npm run dev
 
 After running this command, you'll able to see on your terminal which port your WEB APP is running:
 <img width="776" alt="Screenshot 2023-10-06 at 22 18 36" src="https://github.com/lucaspaulodev/tuned-do/assets/61305960/73b79eb8-7c13-46ae-b9b3-fa95b3ebd880">
+
+### HOW THE WEB APP LOOKS:
+![Screenshot 2023-10-06 at 22 20 29](https://github.com/lucaspaulodev/tuned-do/assets/61305960/8b778d9c-fddf-473b-bc84-4494f13ce000)
